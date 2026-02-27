@@ -1,0 +1,55 @@
+레퍼런스게임 : 록맨(2D 횡스크롤 액션) 2D, 3D? 미정 에셋으로 결정
+
+조작감(가속/점프/낙하/피격)
+
+인풋시스템, 물리, 카메라, 애니메이션, 적AI
+
+이동, 발사, 체력(피격/무적시간/넉백)
+벽점프/대시/차지샷/무기 교체
+
+스테이지
+
+
+
+참고 유튜브
+https://www.youtube.com/watch?v=UfYScuYI0Ss
+https://www.youtube.com/watch?v=pARyrvmz4Bo&list=PLfKMG2CcLNaLVod7WS3Yg28CJis_7L2PQ&index=1
+https://www.youtube.com/watch?v=bGkjkucSy48
+https://www.youtube.com/watch?v=xBovYV-7TGc
+
+.fbs
+
+=================================================
+
+레퍼런스 게임 : https://www.youtube.com/watch?v=QvQHT05okC0
+https://adamkareem.itch.io/megaman-x-and-zero
+
+
+액션 , 플랫폼 게임
+이동 및 물리
+이동(가속/감속), 점프, 낙하
+발사, 피격?
+
+지형 제작
+장애물 가림 처리
+공중 제어
+카메라 시스템
+전투 시스템
+타겟 락온
+
+
+적 AI
+감지 (레이캐스트, 네브메쉬?)
+
+
+
+
+
+
+
+
+
+
+
+
+
