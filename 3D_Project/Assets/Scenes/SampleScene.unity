@@ -740,7 +740,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd1e32571d7eca4280a822a9cb76554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotController
-  _moveSpeed: 3
+  _moveSpeed: 4
+  _gravity: -9
+  _jumpHeight: 2.5
+  _shortJumpMultiplier: 0.5
 --- !u!143 &1251708794
 CharacterController:
   m_ObjectHideFlags: 0
