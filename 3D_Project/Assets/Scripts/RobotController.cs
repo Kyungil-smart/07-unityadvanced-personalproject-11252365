@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(RobotAniController))]
 public class RobotController : MonoBehaviour
 {
     #region Action Names
@@ -24,6 +24,9 @@ public class RobotController : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     private Vector2 _moveInput; // 현재 입력된 방향을 저장할 변수 
 
+    [Tooltip("로봇의 회전 속도 (숫자가 클수록 빠르게 회전)")]
+    [SerializeField, Range(0f, 1000f)] private float _rotationSpeed;
+    
     [Tooltip("로봇의 중력 값")]
     [SerializeField] private float _gravity;
     private Vector3 _velocity;  // 캐릭터의 수직 낙하 속도
@@ -33,6 +36,9 @@ public class RobotController : MonoBehaviour
 
     [Tooltip("가변 점프 : 0에 가까울수록 더 급격히 낮아짐 / 1이면 가변 점프 효과 없음")] 
     [SerializeField, Range(0f, 1f)] private float _shortJumpMultiplier;
+    
+    // ==== 애니메이션 관련 필드 ==== //
+    private RobotAniController _aniController;
     
     #region Unity Lifecycle
     private void Awake()
@@ -52,8 +58,10 @@ public class RobotController : MonoBehaviour
 
     private void Update()
     {
-        CalculateGravity(); // 중력 및 낙하 속도 계산
-        MoveCharacter();    // 이동 방향 계산 및 실제 이동 적용
+        CalculateGravity(); // 1. 중력 및 낙하 속도 계산
+        MoveCharacter();    // 2. 이동 방향 계산 및 실제 이동 적용
+        RotateCharacter();  // 3. 회전 (바라보는 방향 변경)
+        UpdateAnimation();  // 4. 애니메이션 상태 전달
         
     }
     
@@ -63,6 +71,8 @@ public class RobotController : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
+        
+        _aniController = GetComponent<RobotAniController>();
         
         _gravity = -Mathf.Abs(_gravity);    // 중력이 무조건 음수가 되도록 강제 보정
     }
@@ -87,6 +97,8 @@ public class RobotController : MonoBehaviour
                 {
                     // 물리 공식: V = sqrt(h * -2 * g)
                     _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+                    
+                    _aniController.TriggerJump();
                 }
                 if (context.canceled && _velocity.y > 0)
                 {
@@ -118,5 +130,31 @@ public class RobotController : MonoBehaviour
         Vector3 finalMovement= (moveDirection * _moveSpeed) + _velocity;
         
         _characterController.Move(finalMovement * Time.deltaTime);
+    }
+
+    private void RotateCharacter()
+    {
+        if (_moveInput == Vector2.zero) return;
+        
+        Vector3 targetDirection = new Vector3(_moveInput.x, 0f, _moveInput.y);
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        transform.rotation = Quaternion.RotateTowards
+            (transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+    }
+
+    private void UpdateAnimation()
+    {
+        // 현재 캐릭터의 실제 속도
+        Vector3 currentVelocity = _characterController.velocity;
+        
+        // 수평 속도 측정
+        float horizontalSpeed = new Vector3(currentVelocity.x, 0f, currentVelocity.z).magnitude;
+        
+        // 현재 실제 속도를 최대 이동속도(_moveSpeed)로 나누어 0~1 사이의 비율로 만듬
+        float normalizedSpeed = (_moveSpeed > 0f) ? Mathf.Clamp01(horizontalSpeed / _moveSpeed) : 0f;
+        
+        // 매 프레임마다 애니메이션 스크립트에게 현재 속도와 바닥 상태를 넘겨줌
+        _aniController.UpdateLocomotion(normalizedSpeed, _characterController.isGrounded);
     }
 }
