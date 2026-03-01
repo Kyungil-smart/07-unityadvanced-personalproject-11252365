@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class RobotAniController : MonoBehaviour
+[DisallowMultipleComponent]
+public class RobotAnimationController : MonoBehaviour
 {
     private Animator _animator;
 
