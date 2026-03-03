@@ -43,18 +43,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LockOn",
+                    "name": "AimToggle",
                     "type": "Button",
                     "id": "07874472-81f9-4d44-839d-88e412639c84",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "2c64282f-d133-4d74-bdb3-7d532a728b3b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -70,9 +61,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "AutoFire",
+                    "type": "Button",
+                    "id": "ded8f517-5130-427e-8793-ff30987efdd5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Reload",
                     "type": "Button",
                     "id": "74a8cf2c-454a-45c6-896a-f9c46cbd6882",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "2c64282f-d133-4d74-bdb3-7d532a728b3b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -164,7 +173,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Computer",
-                    "action": "LockOn",
+                    "action": "AimToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -209,6 +218,17 @@
                     "processors": "",
                     "groups": ";Computer",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a045db0-fa50-4d9a-bbc7-901f0a2eb1a3",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Computer",
+                    "action": "AutoFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
