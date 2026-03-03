@@ -7,8 +7,16 @@ public class RobotAnimationController : MonoBehaviour
 
     #region Animation Parameters Hashes
     private static readonly int ANIM_MOVE_SPEED = Animator.StringToHash("MoveSpeed");
+    private static readonly int ANim_MOVE_X =  Animator.StringToHash("MoveX");
+    private static readonly int ANim_MOVE_Y =  Animator.StringToHash("MoveY");
     private static readonly int ANIM_IS_GROUNDED = Animator.StringToHash("IsGrounded");
+    private static readonly int ANIM_IS_AIMING = Animator.StringToHash("IsAiming");
     private static readonly int ANIM_JUMP_TRIGGER = Animator.StringToHash("JumpTrigger");
+    private static readonly int ANIM_FIRE_TRIGGER = Animator.StringToHash("FireTrigger");
+    private static readonly int ANIM_DASH_TRIGGER = Animator.StringToHash("DashTrigger");
+    private static readonly int ANIM_AUTO_FIRE_TRIGGER = Animator.StringToHash("AutoFireTrigger");
+    private static readonly int ANIM_RELOAD_TRIGGER = Animator.StringToHash("ReloadTrigger");
+    private static readonly int ANIM_DIE_TRIGGER = Animator.StringToHash("DieTrigger");
 
     #endregion
 
@@ -39,18 +47,32 @@ public class RobotAnimationController : MonoBehaviour
     }
     
     // RobotController에서 이동 상태를 갱신할 때 사용하는 함수 
-    public void UpdateLocomotion(float moveSpeed, bool isGrounded)
+    public void UpdateLocomotion(float moveSpeed, Vector2 moveInput, bool isGrounded, bool isAiming)
     {
         if (_animator == null) return;
         
-        // 댐핑(Damping) 적용: 값이 0에서 1로 튀지 않고 지정된 시간에 걸쳐 부드럽게 바뀜
-        _animator.SetFloat(ANIM_MOVE_SPEED, moveSpeed, _moveSpeedDampTime, Time.deltaTime);
         _animator.SetBool(ANIM_IS_GROUNDED, isGrounded);
+        _animator.SetBool(ANIM_IS_AIMING, isAiming);
+
+        if (isAiming)
+        {
+            // 조준 중일 때는 8방향 블렌드 트리 사용을 위한 전달 x, y
+            _animator.SetFloat(ANim_MOVE_X, moveInput.x, _moveSpeedDampTime, Time.deltaTime);
+            _animator.SetFloat(ANim_MOVE_Y, moveInput.y, _moveSpeedDampTime, Time.deltaTime);
+        }
+        else
+        {
+            _animator.SetFloat(ANIM_MOVE_SPEED, moveSpeed, _moveSpeedDampTime, Time.deltaTime);
+        }
     }
 
-    public void TriggerJump()
-    {
-        if (_animator == null) return;
-        _animator.SetTrigger(ANIM_JUMP_TRIGGER);
-    }
+    #region Animator Triggers
+    public void TriggerJump() => _animator.SetTrigger(ANIM_JUMP_TRIGGER);
+    public void TriggerDash() => _animator.SetTrigger(ANIM_DASH_TRIGGER);
+    public void TriggerFire() => _animator.SetTrigger(ANIM_FIRE_TRIGGER);
+    public void TriggerAutoFire() => _animator.SetTrigger(ANIM_AUTO_FIRE_TRIGGER);
+    public void TriggerReload() => _animator.SetTrigger(ANIM_RELOAD_TRIGGER);
+    public void TriggerDie() => _animator.SetTrigger(ANIM_DIE_TRIGGER);
+
+    #endregion
 }
