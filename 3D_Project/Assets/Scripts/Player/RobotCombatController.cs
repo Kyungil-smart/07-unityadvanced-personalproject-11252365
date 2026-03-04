@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Pool;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(PlayerInput))]
@@ -18,12 +19,14 @@ public class RobotCombatController : MonoBehaviour, IDamageable
     private RobotAnimationController _robotAnimationController;
     private RobotController _robotController;
     
+    // TODO: 나중에 PlayerHeath.cs 로 분리
     [Header("상태 & 체력")]
     [SerializeField] private int _maxHealth = 10;
     public int CurrentHealth { get; private set; }
     public bool IsDead { get; private set; }
     
-    [Header("전투")]
+    // 
+    [Header("전투 세팅")]
     //[SerializeField] private GameObject _healthBar;
     [SerializeField, Tooltip("연사 쿨타임 (초)")] private float _autoFireCooldown = 0.5f;
     [SerializeField, Tooltip("발사할 총알 프리팹")] private GameObject _bulletPrefab;
@@ -31,6 +34,7 @@ public class RobotCombatController : MonoBehaviour, IDamageable
     private bool _isAutoFire;
     private float _autoFireTimer;
     
+    private IObjectPool<Bullet> _bulletPool;
     
     #region Unity Lifecycle
     private void Awake() => Init();
@@ -55,6 +59,16 @@ public class RobotCombatController : MonoBehaviour, IDamageable
         CurrentHealth = _maxHealth;
         IsDead = false;
         _isAutoFire = false;
+        
+        // 오브젝트 풀
+        _bulletPool = new ObjectPool<Bullet>(
+            createFunc: CreateBullet,
+            actionOnGet: OnGetBullet,
+            actionOnRelease: OnReleaseBullet,
+            actionOnDestroy: OnDestroyBullet,
+            collectionCheck: false,
+            defaultCapacity:  20,
+            maxSize: 40);
     }
     
     // NOTE : Input System의 3가지 작동 단계
@@ -87,16 +101,12 @@ public class RobotCombatController : MonoBehaviour, IDamageable
 
     private void Shoot()
     {
+        if (_bulletPool == null || _firePoint == null) return;
+        
         _robotAnimationController.TriggerFire();
+        _bulletPool.Get();
 
-        if (_bulletPrefab != null && _firePoint != null)
-        {
-            Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-        }
-        else
-        {
-            Debug.Log("불릿 프리팹, 파이어포인트 연결 확인 해주세요");
-        }
+
     }
     
     private void HandleAutoFire()
@@ -131,5 +141,34 @@ public class RobotCombatController : MonoBehaviour, IDamageable
         _robotAnimationController.TriggerDie();
         Debug.Log("플레이어 사망...");
     }
+
+    #region Object Pool Methods
+    private Bullet CreateBullet()
+    {
+        GameObject obj = Instantiate(_bulletPrefab);
+        return obj.GetComponent<Bullet>();
+    }
+
+    private void OnGetBullet(Bullet bullet)
+    {
+        bullet.SetPool(_bulletPool);
+        
+        bullet.transform.position = _firePoint.position;
+        bullet.transform.rotation = _firePoint.rotation;
+        bullet.gameObject.SetActive(true);
+    }
+
+    private void OnReleaseBullet(Bullet bullet)
+    {
+        bullet.gameObject.SetActive(false);
+    }
+
+    private void OnDestroyBullet(Bullet bullet)
+    {
+        Destroy(bullet.gameObject);
+    }
+    
+    #endregion
+    
     
 }

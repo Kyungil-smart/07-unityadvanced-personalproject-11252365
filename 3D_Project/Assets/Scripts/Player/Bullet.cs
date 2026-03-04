@@ -16,7 +16,9 @@ public class Bullet : MonoBehaviour
     
     private Rigidbody _rigidbody;
     private IObjectPool<Bullet> _objectPool;
+    private bool _isReleased;
 
+    #region Unity Lifecycle
     private void Awake() => Init();
 
     public void SetPool(IObjectPool<Bullet> objectPool)
@@ -26,6 +28,8 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
+        _isReleased = false;
+        
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
         _rigidbody.linearVelocity = transform.forward * _moveSpeed;
@@ -40,6 +44,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_isReleased) return;
+        
         if ((_targetLayer.value & (1 << other.gameObject.layer)) == 0) return;
 
         IDamageable damageable = other.GetComponentInParent<IDamageable>();
@@ -47,10 +53,15 @@ public class Bullet : MonoBehaviour
 
         DestroySelf();
     }
+    
+    #endregion
 
     private void Init() =>  _rigidbody = GetComponent<Rigidbody>();
     private void DestroySelf()
     {
+        if (_isReleased) return;
+        _isReleased = true;
+        
         if (_objectPool != null) _objectPool.Release(this);
         else
         {
