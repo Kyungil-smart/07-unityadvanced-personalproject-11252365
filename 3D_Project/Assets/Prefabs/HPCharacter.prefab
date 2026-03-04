@@ -712,6 +712,37 @@ Transform:
   - {fileID: 3156480768126866237}
   m_Father: {fileID: 572526408303458877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2381724964922969663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3274160880815538159}
+  m_Layer: 0
+  m_Name: Aim
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3274160880815538159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2381724964922969663}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.181, y: 1.4309969, z: 0.891}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5157836102598823874}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2411530347641978029
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +768,7 @@ Transform:
   m_GameObject: {fileID: 2411530347641978029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.476, z: -0.463}
+  m_LocalPosition: {x: 0, y: 1.476, z: -0.602}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2252,6 +2283,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4160259347987547834}
+  - {fileID: 3274160880815538159}
   - {fileID: 7034140444640876657}
   - {fileID: 806294539811351723}
   - {fileID: 4502038560781474302}
@@ -2298,14 +2330,14 @@ MonoBehaviour:
   _cameraTransform: {fileID: 0}
   _aimCamera: {fileID: 0}
   _crosshairUI: {fileID: 0}
-  _moveSpeed: 4
+  _moveSpeed: 5
   _gravity: -9
   _rotationSpeed: 351
-  _dashSpeed: 20
+  _dashSpeed: 25
   _dashDuration: 0.4
   _dashCooldown: 1
-  _jumpHeight: 2.5
-  _shortJumpMultiplier: 0.5
+  _jumpHeight: 4
+  _shortJumpMultiplier: 0.337
 --- !u!114 &4699919038807789548
 MonoBehaviour:
   m_ObjectHideFlags: 0
