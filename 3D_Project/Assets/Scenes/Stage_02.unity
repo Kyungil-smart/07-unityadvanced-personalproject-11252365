@@ -1844,6 +1844,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonTower 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6860231920685189782, guid: 23251ab791d24bd429df23521a3d44c3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860231920685189782, guid: 23251ab791d24bd429df23521a3d44c3, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7927727242251818625, guid: 23251ab791d24bd429df23521a3d44c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.06
@@ -2222,15 +2230,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2937227601050772068, guid: 47d6d75af0d55a2438f985e8fec29d6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.434
+      value: 3.615
       objectReference: {fileID: 0}
     - target: {fileID: 2937227601050772068, guid: 47d6d75af0d55a2438f985e8fec29d6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.126003
+      value: 5.081
       objectReference: {fileID: 0}
     - target: {fileID: 2937227601050772068, guid: 47d6d75af0d55a2438f985e8fec29d6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.45764
+      value: 18.95064
       objectReference: {fileID: 0}
     - target: {fileID: 2937227601050772068, guid: 47d6d75af0d55a2438f985e8fec29d6b, type: 3}
       propertyPath: m_LocalRotation.w
