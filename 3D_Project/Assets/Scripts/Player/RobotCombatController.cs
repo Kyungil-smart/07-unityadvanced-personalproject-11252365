@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(RobotAnimationController))]
-public class RobotCombatController : MonoBehaviour
+public class RobotCombatController : MonoBehaviour, IDamageable
 {
     #region Action Names
     private const string ACTION_MAP_NAME = "RobotActions";
@@ -26,7 +25,9 @@ public class RobotCombatController : MonoBehaviour
     
     [Header("전투")]
     //[SerializeField] private GameObject _healthBar;
-    [SerializeField, Tooltip("연사 쿨타임 (초)")] float _autoFireCooldown = 0.5f;
+    [SerializeField, Tooltip("연사 쿨타임 (초)")] private float _autoFireCooldown = 0.5f;
+    [SerializeField, Tooltip("발사할 총알 프리팹")] private GameObject _bulletPrefab;
+    [SerializeField, Tooltip("총구 위치")] private Transform _firePoint;
     private bool _isAutoFire;
     private float _autoFireTimer;
     
@@ -42,8 +43,7 @@ public class RobotCombatController : MonoBehaviour
 
         HandleAutoFire();
     }
-
-
+    
     #endregion
 
     private void Init()
@@ -68,7 +68,11 @@ public class RobotCombatController : MonoBehaviour
         switch (context.action.name)
         {
             case ACTION_FIRE:
-                if (context.started) _robotAnimationController.TriggerFire();
+                if (context.started)
+                {
+                    Shoot();
+                }
+                    
                 break;
             case ACTION_AUTO_FIRE:
                 if (context.started) _isAutoFire = true;
@@ -80,6 +84,20 @@ public class RobotCombatController : MonoBehaviour
                 
         }
     }
+
+    private void Shoot()
+    {
+        _robotAnimationController.TriggerFire();
+
+        if (_bulletPrefab != null && _firePoint != null)
+        {
+            Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+        }
+        else
+        {
+            Debug.Log("불릿 프리팹, 파이어포인트 연결 확인 해주세요");
+        }
+    }
     
     private void HandleAutoFire()
     {
@@ -88,7 +106,7 @@ public class RobotCombatController : MonoBehaviour
         _autoFireTimer -= Time.deltaTime;
         if (_autoFireTimer <= 0f)
         {
-            _robotAnimationController.TriggerAutoFire();
+            Shoot();
             _autoFireTimer = _autoFireCooldown;
         }
     }
@@ -98,7 +116,7 @@ public class RobotCombatController : MonoBehaviour
         if (IsDead) return;
         
         CurrentHealth -= damage;
-        Debug.Log($"현재 체력 : {CurrentHealth}");
+        Debug.Log($"플레이어 피격1회 현재 체력 : {CurrentHealth}");
 
         if (CurrentHealth <= 0)
         {
@@ -113,15 +131,5 @@ public class RobotCombatController : MonoBehaviour
         _robotAnimationController.TriggerDie();
         Debug.Log("플레이어 사망...");
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
