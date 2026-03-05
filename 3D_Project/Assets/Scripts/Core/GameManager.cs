@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _titleSceneBuildIndex = 0;
     [SerializeField] private int _stage01SceneBuildIndex = 1;
     [SerializeField] private int _stage02SceneBuildIndex = 2;
+    private int _currentStageBuildIndex = 1;
     
     [Header("디버그")]
     [SerializeField] private bool _enableDebugLog = false;
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
     private RobotController _robotController;
     private RobotCombatController _robotCombatController;
 
-    private int _currentStageBuildIndex = 1;
+    
 
     #region Unity Lifecycle
     private void Awake() => Init();
