@@ -113,7 +113,6 @@ public class GameManager : MonoBehaviour
     
     #endregion
     
-    
     #region 게임 상태 및 코어 루프 제어
     public void Clear()
     {
@@ -201,9 +200,9 @@ public class GameManager : MonoBehaviour
         Log($"SceneLoaded: {scene.name} (Index {buildIndex})");
     }
     
-    private static T FindFirstObjectByType<T>() where T : UnityEngine.Object
+    private new static T FindFirstObjectByType<T>() where T : UnityEngine.Object
     {
-        return UnityEngine.Object.FindFirstObjectByType<T>(FindObjectsInactive.Include);
+        return  UnityEngine.Object.FindFirstObjectByType<T>(FindObjectsInactive.Include);
     }
     
     #endregion
