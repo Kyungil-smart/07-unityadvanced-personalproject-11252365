@@ -201,6 +201,8 @@ public class RobotController : MonoBehaviour
     {
         if (Time.time < _lastDashTime + _dashCooldown) return;
         
+        _lastDashTime = Time.time;
+        
         _isDashing = true;
         _dashTimer = _dashDuration;
         
