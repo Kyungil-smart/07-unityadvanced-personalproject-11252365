@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
         if (_lastHp == currentHp) return;
         
         _lastHp = currentHp;
-        _hpText.SetText($"HP : {currentHp}");
+        _hpText.SetText("HP : {0}", currentHp);
     }
     
     private void HandleStateChanged(GameState state)
@@ -100,7 +100,7 @@ public class UIManager : MonoBehaviour
 
     private void SetResultUI(string message)
     {
-        if (_resultPanel == null) return;
+        if (_resultText == null) return;
         _resultText.SetText(message);
     }
 
