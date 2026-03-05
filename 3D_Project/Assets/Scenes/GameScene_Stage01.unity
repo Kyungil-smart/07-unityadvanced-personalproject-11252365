@@ -293,6 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 121632818}
+  - component: {fileID: 121632820}
   - component: {fileID: 121632819}
   m_Layer: 12
   m_Name: GoalZone
@@ -338,6 +339,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 15, y: 12, z: 22}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &121632820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121632817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e37e35ad543484fa4303af6b717e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoalZone
+  _tringerOnce: 1
 --- !u!1001 &136309851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,6 +1010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662779226}
+  - component: {fileID: 662779228}
   - component: {fileID: 662779227}
   m_Layer: 13
   m_Name: DeadZone
@@ -1040,6 +1055,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 100, y: 2, z: 450}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &662779228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662779225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59ac0d3206eae94fb7082b7e3040fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
+  _triggerOnce: 1
 --- !u!4 &724660429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7625242775217833625, guid: 2caa797b894dded429f78c0853d8d0c8, type: 3}
@@ -2881,6 +2909,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 4749771080429510004, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749771080429510004, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749771080429510004, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5406278479786016859}
+    - target: {fileID: 4749771080429510004, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749771080429510004, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnResultReturnToTitle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749771080429510004, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749771080429510004, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5550949747431196745, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2961,11 +3017,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7121395244945003061, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121395244945003061, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121395244945003061, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5406278479786016859}
+    - target: {fileID: 7121395244945003061, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121395244945003061, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnResultClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121395244945003061, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121395244945003061, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+--- !u!114 &5406278479786016859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6072484831320105380, guid: acda21dc9606ff548b2357fb3f2a2458, type: 3}
+  m_PrefabInstance: {fileID: 5406278479786016858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6ff69d4d10d2146bb9193274d9d0ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
 --- !u!4 &5887626450594920918
 Transform:
   m_ObjectHideFlags: 0

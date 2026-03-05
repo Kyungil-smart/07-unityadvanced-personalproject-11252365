@@ -2339,6 +2339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8523229637895302806}
+  - component: {fileID: 8523229637895302807}
   - component: {fileID: 2653661286296063961}
   m_Layer: 13
   m_Name: DeadZone
@@ -2739,6 +2740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4610737321375543720}
+  - component: {fileID: 8266885014939094630}
   - component: {fileID: 2117989347998225840}
   m_Layer: 12
   m_Name: GoalZone
@@ -2747,6 +2749,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8266885014939094630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266885014939094629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e37e35ad543484fa4303af6b717e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoalZone
 --- !u!1001 &8267997829561408948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2903,6 +2917,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5643936623026346711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8523229637895302807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200097872176523611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59ac0d3206eae94fb7082b7e3040fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeadZone
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
