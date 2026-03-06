@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
         if (_lastHp == currentHp) return;
         
         _lastHp = currentHp;
-        _hpText.SetText("HP : {0}", currentHp);
+        _hpText.SetText("HP  {0}", currentHp);
     }
     
     private void HandleStateChanged(GameState state)
