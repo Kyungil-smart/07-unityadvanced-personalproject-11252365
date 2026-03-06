@@ -2336,7 +2336,7 @@ MonoBehaviour:
   _rotationSpeed: 351
   _dashSpeed: 25
   _dashDuration: 0.4
-  _dashCooldown: 1
+  _dashCooldown: 1.5
   _jumpHeight: 4
   _shortJumpMultiplier: 0.337
 --- !u!114 &4699919038807789548
