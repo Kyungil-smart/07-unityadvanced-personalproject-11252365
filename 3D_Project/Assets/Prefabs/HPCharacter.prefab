@@ -2368,6 +2368,17 @@ MonoBehaviour:
   _autoFireCooldown: 0.5
   _bulletPrefab: {fileID: 5919220286410709334, guid: 487dbb68ef818f247a229a25fa68bcac, type: 3}
   _firePoint: {fileID: 5985283627221632753}
+  _aimRaycastConfig:
+    AimCamera: {fileID: 0}
+    HitLayerMask:
+      serializedVersion: 2
+      m_Bits: 3200
+    MaxDistance: 100
+  _aimDebugConfig:
+    ShowGizmos: 1
+    ShowOnlyWhileAiming: 1
+    HitPointRadius: 0.2
+    ForwardLineLength: 3
 --- !u!114 &2493008872179846007
 MonoBehaviour:
   m_ObjectHideFlags: 0

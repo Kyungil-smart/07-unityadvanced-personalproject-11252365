@@ -200,6 +200,7 @@ public class RobotCombatController : MonoBehaviour, IDamageable
     private Bullet CreateBullet()
     {
         GameObject obj = Instantiate(_bulletPrefab);
+        obj.SetActive(false);
         return obj.GetComponent<Bullet>();
     }
 
