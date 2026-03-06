@@ -142,6 +142,7 @@ public class TurretEnemyController : MonoBehaviour
     private Bullet CreateBullet()
     {
         GameObject bulletObject = Instantiate(_enemyBulletPrefab);
+        bulletObject.SetActive(false);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
         if (bullet == null)
             Debug.LogError("[TurretEnemyController] 프리팹에 불렛 을 확인하세요");
